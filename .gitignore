@@ -1,3 +1,9 @@
 node_modules
+<<<<<<< HEAD
 dist
 .env
+=======
+README.md
+.env
+.vercel
+>>>>>>> other-repo/main
