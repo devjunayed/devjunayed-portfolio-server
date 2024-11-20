@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { AuthRoutes } from '../modules/auth/auth.route'
-import { FacilityRoutes } from '../modules/facility/facility.route'
+import { FacilityRoutes } from '../modules/blog/blog.route'
 import { BookingRoutes } from '../modules/booking/booking.route'
 import { UserRoutes } from '../modules/user/user.route'
 import { PaymentRoutes } from '../modules/payment/payment.route'
@@ -25,9 +25,9 @@ const routes = [
     route: UserRoutes,
   },
   {
-    path: "/payment",
-    route: PaymentRoutes
-  }
+    path: '/payment',
+    route: PaymentRoutes,
+  },
 ]
 
 routes.forEach((route) => router.use(route.path, route.route))
