@@ -26,6 +26,7 @@ const getAllUser = catchAsync(async (req, res) => {
 const getSingleUser = catchAsync(async (req, res) => {
   const result = await UserServies.getSingleUserFromDb(req.params.email)
 
+
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,

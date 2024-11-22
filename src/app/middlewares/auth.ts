@@ -10,15 +10,13 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 import { User } from '../modules/user/user.model'
 
 const auth = (...requiredRoles: TRole[]) => {
+
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = req.headers.authorization;
+
 
     if (!token) {
-      res.status(httpStatus.UNAUTHORIZED).json({
-        success: false,
-        statusCode: httpStatus.UNAUTHORIZED,
-        message: 'You have no access to this route',
-      })
+      throw new AppError(httpStatus.UNAUTHORIZED, 'You have no access to this route')
     }
 
     // checking if the toke is valid

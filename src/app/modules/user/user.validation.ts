@@ -24,9 +24,9 @@ const createUserValidation = z.object({
         invalid_type_error: 'Phone must be a string!',
       })
       .min(10, 'Phone number must be at least 10 digits long!'),
-    role: z.enum(['admin', 'user'], {
+    role: z.enum(['creator'], {
       required_error: 'Role is required!',
-      invalid_type_error: "Role must be either 'admin' or 'user'!",
+      invalid_type_error: "Role must be either 'creator' !",
     }),
     address: z.string({
       required_error: 'Address is required!',

@@ -4,7 +4,7 @@ import httpStatus from 'http-status'
 type TResponse<T> = {
   statusCode: number
   success: boolean
-  token?: string
+  token?: {accessToken: string, refreshToken: string}
   message: string
   data: T
 }

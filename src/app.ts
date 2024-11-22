@@ -10,7 +10,7 @@ const app: Application = express()
 
 // cors
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://sportyfy.devjunayed.xyz'],
+  origin: ['http://localhost:3000', 'https://devjunayed.xyz'],
   methods: "GET, POST, PUT, DELETE",
   credentials: true,
   allowedHeaders: "Content-Type, Authorization"
@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 })
 
 // using routes
-app.use('/api/', router)
+app.use('/api/v1/', router)
 
 // global error handler
 app.use(globalErrorHandler)

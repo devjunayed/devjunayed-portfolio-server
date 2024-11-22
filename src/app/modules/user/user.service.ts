@@ -13,6 +13,7 @@ const getAllUserFromDb = async() => {
 
 const getSingleUserFromDb = async(email: string) => {
   const result = await User.findOne({email});
+  console.log(result)
   return result;
 }
 
