@@ -12,7 +12,7 @@ import handleDuplicateError from '../errors/handleDuplicateError'
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   let statusCode = 500
-  let message = 'Something went wrong!'
+  let message = err?.message || 'Something went wrong!'
   let errorSources: TErrorSources = [
     {
       path: '',
@@ -58,6 +58,8 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
       },
     ]
   }
+
+
 
   //ultimate return
   return res.status(statusCode).json({

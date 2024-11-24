@@ -15,6 +15,29 @@ const logInUser = catchAsync(async (req, res) => {
   })
 })
 
+const refreshToken = catchAsync(async(req, res) => {
+  const refreshToken =  req.headers.cookie;
+  if (!refreshToken) {
+    return sendResponse(res, {
+      statusCode: httpStatus.UNAUTHORIZED,
+      success: false,
+      data: [],
+      message: "Refresh token is missing!",
+    });
+  }
+  const result = await AuthService.refreshToken(refreshToken);
+
+
+  sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Access token retrieved successfully!",
+      data: result,
+    });
+})
+
+
 export const AuthController = {
   logInUser,
+  refreshToken
 }

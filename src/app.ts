@@ -13,7 +13,12 @@ app.use(cors({
   origin: ['http://localhost:3000', 'https://devjunayed.xyz'],
   methods: "GET, POST, PUT, DELETE",
   credentials: true,
-  allowedHeaders: "Content-Type, Authorization"
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'Access-Control-Allow-Origin', 
+    'Access-Control-Allow-Headers'
+  ],
 }))
 
 // middlewares for getting data from the frontend

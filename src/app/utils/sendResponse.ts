@@ -25,7 +25,7 @@ export function sendResponse<T>(
 
   if ((Array.isArray(data) && data?.length === 0) || !data) {
     responseData.data = (Array.isArray(data) ? [] : null) as T
-    responseData.message = 'No Data Found'
+    responseData.message = message ? message : 'No Data Found'
     responseData.statusCode = httpStatus.NOT_FOUND
     responseData.success = false
   }
