@@ -39,6 +39,12 @@ const createSkillIntoDB = async ({
   return result
 }
 
+const getAllSkillFromDB = async() => {
+  const result = await Skills.find();
+  return result;
+}
+
 export const SkillServices = {
   createSkillIntoDB,
+  getAllSkillFromDB
 }

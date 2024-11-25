@@ -5,7 +5,6 @@ import { SkillServices } from './skill.services'
 
 const createSkill = catchAsync(async (req, res) => {
   const result = await SkillServices.createSkillIntoDB(req.body)
-  console.log(result)
 
   sendResponse(res, {
     success: true,
@@ -14,7 +13,18 @@ const createSkill = catchAsync(async (req, res) => {
     data: result,
   })
 })
+const getAllSkill = catchAsync(async (req, res) => {
+  const result = await SkillServices.getAllSkillFromDB()
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Skill fetched successfully',
+    data: result,
+  })
+})
 
 export const SkillsController = {
   createSkill,
+  getAllSkill
 }
