@@ -3,18 +3,20 @@ import httpStatus from 'http-status'
 
 type TResponse<T> = {
   statusCode: number
-  success: boolean
+  success: boolean,
+  totalDocument?: number,
   token?: {accessToken: string, refreshToken: string}
   message: string
   data: T
 }
 export function sendResponse<T>(
   res: Response,
-  { statusCode, success, token, message, data }: TResponse<T>,
+  { statusCode, success, totalDocument, token, message, data }: TResponse<T>,
 ) {
   const responseData: TResponse<T> = {
     success,
     statusCode,
+    totalDocument,
     message,
     data,
   }
@@ -27,6 +29,7 @@ export function sendResponse<T>(
     responseData.data = (Array.isArray(data) ? [] : null) as T
     responseData.message = message ? message : 'No Data Found'
     responseData.statusCode = httpStatus.NOT_FOUND
+    responseData.totalDocument = 0
     responseData.success = false
   }
 

@@ -6,6 +6,14 @@ const blogSchema = new Schema<TBlog>({
     type: String,
     required: true,
   },
+  thumbnail: {
+    type: String,
+    required: true
+  },
+  shortDescription: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: true,

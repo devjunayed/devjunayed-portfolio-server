@@ -18,4 +18,4 @@ router.get(
   BlogController.getAllBlog,
 )
 
-export const SkillRoutes = router
+export const BlogRoutes = router

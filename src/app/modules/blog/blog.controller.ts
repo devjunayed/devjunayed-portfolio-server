@@ -14,11 +14,12 @@ const createBlog = catchAsync(async (req, res) => {
   })
 })
 const getAllBlog = catchAsync(async (req, res) => {
-  const result = await BlogServices.getAllBlogFromDB()
+  const {result, totalDocument} = await BlogServices.getAllBlogFromDB(req.query)
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
+    totalDocument: Number(totalDocument),
     message: 'All Blog fetched successfully',
     data: result,
   })
