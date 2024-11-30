@@ -18,4 +18,9 @@ router.get(
   BlogController.getAllBlog,
 )
 
+router.get(
+  '/:blogId',
+  BlogController.getSingleBlog,
+)
+
 export const BlogRoutes = router

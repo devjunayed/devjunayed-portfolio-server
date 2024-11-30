@@ -18,7 +18,13 @@ const getAllBlogFromDB = async (query: Record<string, unknown>) => {
   return {result, totalDocument}
 }
 
+const getSingleBlogFromDB = async (blogId: string) => {
+  const result = Blog.findById(blogId);
+  return result;
+}
+
 export const BlogServices = {
   createBlogIntoDB,
   getAllBlogFromDB,
+  getSingleBlogFromDB
 }
