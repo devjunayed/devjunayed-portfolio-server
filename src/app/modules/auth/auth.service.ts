@@ -46,29 +46,42 @@ const logInUser = async (payload: TLoginUser) => {
 }
 
 const refreshToken = async (token: string) => {
-  
-  const decoded = jwt.verify(token, config.jwt_refresh_secret as string) as JwtPayload;
+  try {
+    // Decode and verify the refresh token
+    const decoded = jwt.verify(token, config.jwt_refresh_secret as string) as JwtPayload;
 
-  const {email, iat} = decoded;
+    // Extract email and validate user existence
+    const { email } = decoded;
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new AppError(httpStatus.NOT_FOUND, 'User not found!');
+    }
 
-  const user = await User.findOne({email});
+    // Prepare payload and generate new access token
+    const jwtPayload = {
+      email: user.email,
+      role: user.role as string,
+    };
 
-  if(!user){
-    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found');
+    const accessToken = createToken(
+      jwtPayload,
+      config.jwt_access_secret as string,
+      config.jwt_access_expires_in as string,
+    );
+
+    return accessToken;
+  } catch (err) {
+    if (err instanceof jwt.JsonWebTokenError) {
+      if (err.name === 'TokenExpiredError') {
+        throw new AppError(httpStatus.UNAUTHORIZED, 'Refresh token expired. Please log in again.');
+      } else if (err.name === 'JsonWebTokenError') {
+        throw new AppError(httpStatus.BAD_REQUEST, 'Invalid token provided.');
+      }
+    }
+
+    // Generic error handling
+    throw new AppError(httpStatus.INTERNAL_SERVER_ERROR, 'An error occurred during token validation.');
   }
-
-  const jwtPayload = {
-    email: user.email,
-    role: user.role
-  }
-
-  const accessToken = createToken(
-    jwtPayload,
-    config.jwt_access_secret as string,
-    config.jwt_access_expires_in as string
-  )
-
-  return accessToken;
 }
 
 export const AuthService = {
