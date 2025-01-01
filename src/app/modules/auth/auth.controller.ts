@@ -27,7 +27,7 @@ const refreshToken = catchAsync(async(req, res) => {
   }
   const result = await AuthService.refreshToken(refreshToken);
 
-  console.log(result);
+
 
   sendResponse(res, {
       statusCode: httpStatus.OK,

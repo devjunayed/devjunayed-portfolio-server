@@ -73,7 +73,7 @@ const refreshToken = async (token: string) => {
   } catch (err) {
     if (err instanceof jwt.JsonWebTokenError) {
       if (err.name === 'TokenExpiredError') {
-        throw new AppError(httpStatus.UNAUTHORIZED, 'Refresh token expired. Please log in again.');
+        throw new AppError(httpStatus.BAD_REQUEST, 'Refresh token expired. Please log in again.');
       } else if (err.name === 'JsonWebTokenError') {
         throw new AppError(httpStatus.BAD_REQUEST, 'Invalid token provided.');
       }
