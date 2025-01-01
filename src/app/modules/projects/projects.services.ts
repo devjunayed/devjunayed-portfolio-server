@@ -1,53 +1,88 @@
 import httpStatus from 'http-status'
 import AppError from '../../errors/AppError'
-import { TSkill } from './projects.interface'
-import { Skills } from './projects.model'
+import { TProject } from './projects.interface'
+import { Projects } from './projects.model'
 
-const createSkillIntoDB = async ({
-  skillName,
-  icon,
-  categoryName,
-  description,
-}: TSkill) => {
-  const isCategoryExist = await Skills.findOne({
-    categoryName,
-  })
+const createProjectIntoDB = async ({
+  projectTitle,
+  projectThumbnail,
+  projectClientViewLink,
+  projectServerViewLink,
+  projectClientCodeLink,
+  projectServerCodeLink,
+  projectDescription,
+  projectTags,
+  projectTechnologies,
+}: TProject) => {
+  // Check if the project already exists based on project title
+  const isProjectExist = await Projects.findOne({ projectTitle })
 
-  if (
-    isCategoryExist &&
-    isCategoryExist.skills.find((skill) => skill.icon === icon)
-  ) {
-    throw new AppError(httpStatus.NOT_ACCEPTABLE, 'Icon is already added')
+  if (isProjectExist) {
+    throw new AppError(httpStatus.NOT_ACCEPTABLE, 'Project with this title already exists')
   }
 
-  if (isCategoryExist) {
-    const result = await Skills.findOneAndUpdate(
-      { categoryName },
-      {
-        $push: {
-          skills: {
-            skillName,
-            icon,
-            description,
-          },
-        },
-      },
-    )
-    return result
-  }
-  const result = await Skills.create({
-    categoryName,
-    skills: [{ skillName, icon, description }],
+  // Create new project in the database
+  const result = await Projects.create({
+    projectTitle,
+    projectThumbnail,
+    projectClientViewLink,
+    projectServerViewLink,
+    projectClientCodeLink,
+    projectServerCodeLink,
+    projectDescription,
+    projectTags,
+    projectTechnologies,
   })
+
   return result
 }
 
-const getAllSkillFromDB = async () => {
-  const result = await Skills.find()
+const getAllProjectsFromDB = async () => {
+  // Fetch all projects from the database
+  const result = await Projects.find()
   return result
 }
 
-export const SkillServices = {
-  createSkillIntoDB,
-  getAllSkillFromDB,
+const getProjectByIdFromDB = async (projectId: string) => {
+  // Fetch a single project by its ID
+  const result = await Projects.findById(projectId)
+
+  if (!result) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Project not found')
+  }
+
+  return result
+}
+
+const updateProjectInDB = async (
+  projectId: string,
+  updates: Partial<TProject>
+) => {
+  // Update project by its ID
+  const result = await Projects.findByIdAndUpdate(projectId, updates, { new: true })
+
+  if (!result) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Project not found')
+  }
+
+  return result
+}
+
+const deleteProjectFromDB = async (projectId: string) => {
+  // Delete a project by its ID
+  const result = await Projects.findByIdAndDelete(projectId)
+
+  if (!result) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Project not found')
+  }
+
+  return result
+}
+
+export const ProjectServices = {
+  createProjectIntoDB,
+  getAllProjectsFromDB,
+  getProjectByIdFromDB,
+  updateProjectInDB,
+  deleteProjectFromDB,
 }

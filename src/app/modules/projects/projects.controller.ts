@@ -1,30 +1,31 @@
-import httpStatus from 'http-status'
-import { catchAsync } from '../../utils/catchAsync'
-import { sendResponse } from '../../utils/sendResponse'
-import { SkillServices } from './projects.services'
+import httpStatus from 'http-status';
+import { catchAsync } from '../../utils/catchAsync';
+import { sendResponse } from '../../utils/sendResponse';
+import { ProjectServices } from './projects.services';
 
-const createSkill = catchAsync(async (req, res) => {
-  const result = await SkillServices.createSkillIntoDB(req.body)
+const createProject = catchAsync(async (req, res) => {
+  const result = await ProjectServices.createProjectIntoDB(req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.CREATED,
+    message: 'Project created successfully',
+    data: result,
+  });
+});
+
+const getAllProjects = catchAsync(async (req, res) => {
+  const result = await ProjectServices.getAllProjectsFromDB();
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Skill created successfully',
+    message: 'Projects fetched successfully',
     data: result,
-  })
-})
-const getAllSkill = catchAsync(async (req, res) => {
-  const result = await SkillServices.getAllSkillFromDB()
+  });
+});
 
-  sendResponse(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: 'Skill fetched successfully',
-    data: result,
-  })
-})
-
-export const SkillsController = {
-  createSkill,
-  getAllSkill
-}
+export const ProjectsController = {
+  createProject,
+  getAllProjects,
+};

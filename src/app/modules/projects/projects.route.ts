@@ -1,20 +1,18 @@
-import { Router } from 'express'
-import auth from '../../middlewares/auth'
-import { SkillsController } from './skill.controller'
-import { validateRequest } from '../../middlewares/validateRequest'
-import { createSkillValidationSchema } from './projects.validation'
+import { Router } from 'express';
+import auth from '../../middlewares/auth';
+import { ProjectsController } from './projects.controller';
+import { validateRequest } from '../../middlewares/validateRequest';
+import { createProjectValidationSchema } from './projects.validation';
 
-const router = Router()
+const router = Router();
 
 router.post(
   '/',
   auth('creator'),
-  validateRequest(createSkillValidationSchema),
-  SkillsController.createSkill,
-)
-router.get(
-  '/',
-  SkillsController.getAllSkill,
-)
+  validateRequest(createProjectValidationSchema),
+  ProjectsController.createProject
+);
 
-export const SkillRoutes = router
+router.get('/', ProjectsController.getAllProjects);
+
+export const ProjectRoutes = router;
