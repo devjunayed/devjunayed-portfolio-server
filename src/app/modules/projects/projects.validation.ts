@@ -30,6 +30,10 @@ export const createProjectValidationSchema = z.object({
       required_error: 'Project description is required',
       invalid_type_error: 'Project description must be a string',
     }),
+    projectShortDescription: z.string({
+      required_error: 'Project short description is required',
+      invalid_type_error: 'Project short description must be a string',
+    }),
     projectTags: z.string({
       required_error: 'Project tags are required',
       invalid_type_error: 'Project tags must be a string',

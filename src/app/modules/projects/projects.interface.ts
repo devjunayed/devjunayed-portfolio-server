@@ -6,6 +6,7 @@ export type TProject = {
   projectClientCodeLink: string;
   projectServerCodeLink: string;
   projectDescription: string;
+  projectShortDescription: string;
   projectTags: string;
   projectTechnologies: string;
 };

@@ -23,7 +23,7 @@ const routes = [
     route: SkillRoutes
   },
   {
-    path: '/projects',
+    path: '/project',
     route: ProjectRoutes
   }
   ,

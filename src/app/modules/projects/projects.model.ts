@@ -30,6 +30,10 @@ const projectSchema = new Schema<TProject>({
     type: String,
     required: true,
   },
+  projectShortDescription: {
+    type: String,
+    required: true,
+  },
   projectTags: {
     type: String,
     required: false,

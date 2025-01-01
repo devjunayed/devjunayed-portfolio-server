@@ -11,6 +11,7 @@ const createProjectIntoDB = async ({
   projectClientCodeLink,
   projectServerCodeLink,
   projectDescription,
+  projectShortDescription,
   projectTags,
   projectTechnologies,
 }: TProject) => {
@@ -30,6 +31,7 @@ const createProjectIntoDB = async ({
     projectClientCodeLink,
     projectServerCodeLink,
     projectDescription,
+    projectShortDescription,
     projectTags,
     projectTechnologies,
   })
