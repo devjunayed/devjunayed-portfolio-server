@@ -14,5 +14,6 @@ router.post(
 );
 
 router.get('/', ProjectsController.getAllProjects);
+router.get('/featured', ProjectsController.getFeaturedProjects);
 
 export const ProjectRoutes = router;

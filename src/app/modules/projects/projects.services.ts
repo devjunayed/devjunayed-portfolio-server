@@ -44,6 +44,11 @@ const getAllProjectsFromDB = async () => {
   const result = await Projects.find()
   return result
 }
+const getFeaturedProjectsFromDB = async () => {
+  // Fetch all projects from the database
+  const result = await Projects.find({isFeatured: true});
+  return result
+}
 
 const getProjectByIdFromDB = async (projectId: string) => {
   // Fetch a single project by its ID
@@ -87,4 +92,5 @@ export const ProjectServices = {
   getProjectByIdFromDB,
   updateProjectInDB,
   deleteProjectFromDB,
+  getFeaturedProjectsFromDB
 }

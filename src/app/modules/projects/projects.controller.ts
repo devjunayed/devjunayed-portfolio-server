@@ -24,8 +24,19 @@ const getAllProjects = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getFeaturedProjects = catchAsync(async (req, res) => {
+  const result = await ProjectServices.getFeaturedProjectsFromDB();
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Projects fetched successfully',
+    data: result,
+  });
+});
 
 export const ProjectsController = {
   createProject,
   getAllProjects,
+  getFeaturedProjects
 };
