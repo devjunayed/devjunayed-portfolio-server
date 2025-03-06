@@ -7,8 +7,9 @@ export type TProject = {
   projectServerCodeLink: string;
   projectDescription: string;
   projectShortDescription: string;
-  projectTags: string;
-  projectTechnologies: string;
+  projectTags: string[];
+  projectTechnologies: string[];
+  isFeatured: boolean;
 };
 
 export type TProjects = {

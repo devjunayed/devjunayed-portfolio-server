@@ -35,13 +35,17 @@ const projectSchema = new Schema<TProject>({
     required: true,
   },
   projectTags: {
-    type: String,
+    type: [String],
     required: false,
   },
   projectTechnologies: {
-    type: String,
+    type: [String],
     required: false,
   },
+  isFeatured: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 export const Projects = model<TProject>('Project', projectSchema);

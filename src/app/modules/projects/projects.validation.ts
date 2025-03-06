@@ -34,13 +34,21 @@ export const createProjectValidationSchema = z.object({
       required_error: 'Project short description is required',
       invalid_type_error: 'Project short description must be a string',
     }),
-    projectTags: z.string({
-      required_error: 'Project tags are required',
-      invalid_type_error: 'Project tags must be a string',
-    }),
-    projectTechnologies: z.string({
-      required_error: 'Project technologies are required',
-      invalid_type_error: 'Project technologies must be a string',
-    }),
+    projectTags: z.array(
+      z.string({
+        required_error: 'Project tags are required',
+        invalid_type_error: 'Project tags must be a string',
+      }),
+    ),
+    projectTechnologies: z.array(
+      z.string({
+        required_error: 'Project technologies are required',
+        invalid_type_error: 'Project technologies must be a string',
+      }),
+    ),
+    isFeatured: z.boolean({
+      required_error: 'Is featured is required',
+      invalid_type_error: 'Is featured must be a boolean',
+    })
   }),
 })
