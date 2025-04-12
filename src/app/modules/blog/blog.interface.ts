@@ -3,5 +3,5 @@ export type TBlog = {
   thumbnail: string;
   shortDescription: string;
   description: string;
-
+  isFeatured: boolean;
 }

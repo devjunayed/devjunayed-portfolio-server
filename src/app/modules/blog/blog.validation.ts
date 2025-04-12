@@ -17,6 +17,10 @@ export const createBlogValidationSchema = z.object({
    description: z.string({
     required_error: "Blog description is required",
     invalid_type_error: "Blog description must be string"
+   }),
+   isFeatured: z.boolean({
+    required_error: "Is featured is required",
+    invalid_type_error: "Is featured must be boolean"
    })
   }),
 })

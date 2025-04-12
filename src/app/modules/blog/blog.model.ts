@@ -19,6 +19,10 @@ const blogSchema = new Schema<TBlog>(
       type: String,
       required: true,
     },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,
