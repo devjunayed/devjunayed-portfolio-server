@@ -23,4 +23,9 @@ router.get(
   BlogController.getSingleBlog,
 )
 
+router.get(
+  "/featured",
+  BlogController.getFeaturedBlog
+)
+
 export const BlogRoutes = router

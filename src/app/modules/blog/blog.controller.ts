@@ -35,7 +35,19 @@ const getSingleBlog = catchAsync(async (req, res) => {
   })
 })
 
+const getFeaturedBlog = catchAsync(async (req, res) => {
+  const result = await BlogServices.getFeaturedBlogFromDB()
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Blog fetched successfully',
+    data: result,
+  })
+})
+
 export const BlogController = {
+  getFeaturedBlog,
   getSingleBlog,
   createBlog,
   getAllBlog

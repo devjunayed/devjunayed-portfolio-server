@@ -22,9 +22,15 @@ const getSingleBlogFromDB = async (blogId: string) => {
   const result = Blog.findById(blogId);
   return result;
 }
+const getFeaturedBlogFromDB = async () => {
+  const result = Blog.find({ isFeatured: true })
+  .limit(3);
+  return result;
+}
 
 export const BlogServices = {
   createBlogIntoDB,
   getAllBlogFromDB,
-  getSingleBlogFromDB
+  getSingleBlogFromDB,
+  getFeaturedBlogFromDB
 }
