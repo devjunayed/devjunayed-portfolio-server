@@ -16,7 +16,6 @@ const projectSchema = new Schema<TProject>({
   },
   projectServerViewLink: {
     type: String,
-    required: true,
   },
   projectClientCodeLink: {
     type: String,

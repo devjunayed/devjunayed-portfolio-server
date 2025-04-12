@@ -17,7 +17,7 @@ export const createProjectValidationSchema = z.object({
     projectServerViewLink: z.string({
       required_error: 'Server view link is required',
       invalid_type_error: 'Server view link must be a string',
-    }),
+    }).optional(),
     projectClientCodeLink: z.string({
       required_error: 'Client code link is required',
       invalid_type_error: 'Client code link must be a string',

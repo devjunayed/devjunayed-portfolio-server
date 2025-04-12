@@ -13,7 +13,8 @@ router.post(
   ProjectsController.createProject
 );
 
-router.get('/', ProjectsController.getAllProjects);
 router.get('/featured', ProjectsController.getFeaturedProjects);
+router.get('/', ProjectsController.getAllProjects);
+router.get('/:projectId', ProjectsController.getSingleProject);
 
 export const ProjectRoutes = router;

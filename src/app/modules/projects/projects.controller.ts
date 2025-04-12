@@ -35,8 +35,21 @@ const getFeaturedProjects = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleProject = catchAsync(async(req, res) => {
+  const { projectId } = req.params;
+  const result = await ProjectServices.getProjectByIdFromDB(projectId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Project fetched successfully',
+    data: result,
+  });
+})
+
 export const ProjectsController = {
   createProject,
   getAllProjects,
-  getFeaturedProjects
+  getFeaturedProjects,
+  getSingleProject
 };
