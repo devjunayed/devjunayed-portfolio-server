@@ -17,15 +17,16 @@ router.get(
   '/',
   BlogController.getAllBlog,
 )
+router.get(
+  '/featured',
+  BlogController.getFeaturedBlog
+)
 
 router.get(
   '/:blogId',
   BlogController.getSingleBlog,
 )
 
-router.get(
-  "/featured",
-  BlogController.getFeaturedBlog
-)
+
 
 export const BlogRoutes = router

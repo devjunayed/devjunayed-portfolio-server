@@ -36,7 +36,7 @@ const getSingleBlog = catchAsync(async (req, res) => {
 })
 
 const getFeaturedBlog = catchAsync(async (req, res) => {
-  const result = await BlogServices.getFeaturedBlogFromDB()
+  const result = await BlogServices.getFeaturedBlogFromDB();
 
   sendResponse(res, {
     success: true,

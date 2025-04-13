@@ -19,12 +19,11 @@ const getAllBlogFromDB = async (query: Record<string, unknown>) => {
 }
 
 const getSingleBlogFromDB = async (blogId: string) => {
-  const result = Blog.findById(blogId);
+  const result = await Blog.findById(blogId);
   return result;
 }
 const getFeaturedBlogFromDB = async () => {
-  const result = Blog.find({ isFeatured: true })
-  .limit(3);
+  const result = await Blog.find({ isFeatured: true });
   return result;
 }
 
