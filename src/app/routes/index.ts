@@ -4,6 +4,7 @@ import { UserRoutes } from '../modules/user/user.route'
 import { SkillRoutes } from '../modules/skills/skill.route'
 import { BlogRoutes } from '../modules/blog/blog.route'
 import { ProjectRoutes } from '../modules/projects/projects.route'
+import { MessageRoutes } from '../modules/message/message.route'
 
 
 const router = Router()
@@ -30,6 +31,10 @@ const routes = [
   {
     path: '/blog',
     route: BlogRoutes
+  },
+  {
+    path: '/message',
+    route: MessageRoutes
   }
 ]
 
