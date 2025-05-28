@@ -26,10 +26,15 @@ const getFeaturedBlogFromDB = async () => {
   const result = await Blog.find({ isFeatured: true });
   return result;
 }
+const deleteBlogFromDB = async (id: string) => {
+  const result = await Blog.findOneAndDelete({ _id: id });
+  return result;
+}
 
 export const BlogServices = {
   createBlogIntoDB,
   getAllBlogFromDB,
   getSingleBlogFromDB,
-  getFeaturedBlogFromDB
+  getFeaturedBlogFromDB,
+  deleteBlogFromDB
 }

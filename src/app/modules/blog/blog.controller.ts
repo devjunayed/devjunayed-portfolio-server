@@ -45,10 +45,21 @@ const getFeaturedBlog = catchAsync(async (req, res) => {
     data: result,
   })
 })
+const deleteBlog = catchAsync(async (req, res) => {
+  const result = await BlogServices.deleteBlogFromDB(req?.params?.id as string);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Blog deleted successfully',
+    data: result,
+  })
+})
 
 export const BlogController = {
   getFeaturedBlog,
   getSingleBlog,
   createBlog,
-  getAllBlog
+  getAllBlog,
+  deleteBlog
 }

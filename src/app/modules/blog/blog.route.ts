@@ -26,6 +26,10 @@ router.get(
   '/:blogId',
   BlogController.getSingleBlog,
 )
+router.delete(
+  '/:id',
+  BlogController.deleteBlog,
+)
 
 
 
