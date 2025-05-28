@@ -30,11 +30,16 @@ const deleteBlogFromDB = async (id: string) => {
   const result = await Blog.findOneAndDelete({ _id: id });
   return result;
 }
+const updateBlogFromDB = async (id: string, data: Partial<TBlog>) => {
+  const result = await Blog.findOneAndUpdate({ _id: id }, data, { new: true });
+  return result;
+}
 
 export const BlogServices = {
   createBlogIntoDB,
   getAllBlogFromDB,
   getSingleBlogFromDB,
   getFeaturedBlogFromDB,
-  deleteBlogFromDB
+  deleteBlogFromDB,
+  updateBlogFromDB,
 }

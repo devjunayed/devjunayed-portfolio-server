@@ -30,6 +30,10 @@ router.delete(
   '/:id',
   BlogController.deleteBlog,
 )
+router.patch(
+  '/:id',
+  BlogController.updateBlog,
+)
 
 
 
