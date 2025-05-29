@@ -1,4 +1,3 @@
-
 import express, { Application } from 'express'
 import router from './app/routes'
 import cors from 'cors'
@@ -9,17 +8,23 @@ import { notFound } from './app/middlewares/notFound'
 const app: Application = express()
 
 // cors
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://devjunayed.xyz'],
-  methods: "GET, POST, PUT, DELETE",
-  credentials: true,
-  allowedHeaders: [
-    'Content-Type', 
-    'Authorization', 
-    'Access-Control-Allow-Origin', 
-    'Access-Control-Allow-Headers'
-  ],
-}))
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'https://www.devjunayed.xyz',
+      'https://devjunayed.xyz',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'Access-Control-Allow-Origin',
+      'Access-Control-Allow-Headers',
+    ],
+  }),
+)
 
 // middlewares for getting data from the frontend
 app.use(express.json())
@@ -41,4 +46,3 @@ app.use(globalErrorHandler)
 app.use(notFound)
 
 export default app
-
