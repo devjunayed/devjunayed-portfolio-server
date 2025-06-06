@@ -16,5 +16,6 @@ router.post(
 router.get('/featured', ProjectsController.getFeaturedProjects);
 router.get('/', ProjectsController.getAllProjects);
 router.get('/:projectId', ProjectsController.getSingleProject);
+router.patch('/:projectId', ProjectsController.updateProject);
 
 export const ProjectRoutes = router;
