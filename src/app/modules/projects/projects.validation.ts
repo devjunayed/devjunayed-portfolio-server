@@ -14,10 +14,12 @@ export const createProjectValidationSchema = z.object({
       required_error: 'Client view link is required',
       invalid_type_error: 'Client view link must be a string',
     }),
-    projectServerViewLink: z.string({
-      required_error: 'Server view link is required',
-      invalid_type_error: 'Server view link must be a string',
-    }).optional(),
+    projectServerViewLink: z
+      .string({
+        required_error: 'Server view link is required',
+        invalid_type_error: 'Server view link must be a string',
+      })
+      .optional(),
     projectClientCodeLink: z.string({
       required_error: 'Client code link is required',
       invalid_type_error: 'Client code link must be a string',
@@ -35,20 +37,28 @@ export const createProjectValidationSchema = z.object({
       invalid_type_error: 'Project short description must be a string',
     }),
     projectTags: z.array(
-      z.string({
-        required_error: 'Project tags are required',
-        invalid_type_error: 'Project tags must be a string',
+      z.object({
+        title: z.string({
+          required_error: 'Project tag title is required',
+          invalid_type_error: 'Project tag title must be a string',
+        }),
       }),
     ),
     projectTechnologies: z.array(
-      z.string({
-        required_error: 'Project technologies are required',
-        invalid_type_error: 'Project technologies must be a string',
+      z.object({
+        title: z.string({
+          required_error: 'Project technology title is required',
+          invalid_type_error: 'Project technology title must be a string',
+        }),
+        icon: z.string({
+          required_error: 'Project technology icon is required',
+          invalid_type_error: 'Project technology icon must be a string',
+        }),
       }),
     ),
     isFeatured: z.boolean({
       required_error: 'Is featured is required',
       invalid_type_error: 'Is featured must be a boolean',
-    })
+    }),
   }),
 })

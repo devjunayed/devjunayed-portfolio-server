@@ -1,3 +1,12 @@
+export type TProjectTechnology = {
+  title: string;
+  icon: string
+}
+
+export type TProjectTag = {
+  title: string
+}
+
 export type TProject = {
   projectTitle: string;
   projectThumbnail: string;
@@ -7,8 +16,8 @@ export type TProject = {
   projectServerCodeLink: string;
   projectDescription: string;
   projectShortDescription: string;
-  projectTags: string[];
-  projectTechnologies: string[];
+  projectTags: TProjectTag[];
+  projectTechnologies: TProjectTechnology[];
   isFeatured: boolean;
 };
 

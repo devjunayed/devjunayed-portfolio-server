@@ -1,5 +1,14 @@
 import { model, Schema } from 'mongoose';
-import { TProject } from './projects.interface';
+import { TProject, TProjectTag, TProjectTechnology } from './projects.interface';
+
+
+const projectTechnologySchema = new Schema<TProjectTechnology>({
+  title: String,
+  icon: String
+})
+const projectTagSchema = new Schema<TProjectTag>({
+  title: String,
+})
 
 const projectSchema = new Schema<TProject>({
   projectTitle: {
@@ -34,11 +43,11 @@ const projectSchema = new Schema<TProject>({
     required: true,
   },
   projectTags: {
-    type: [String],
+    type: [projectTagSchema],
     required: false,
   },
   projectTechnologies: {
-    type: [String],
+    type: [projectTechnologySchema],
     required: false,
   },
   isFeatured: {
