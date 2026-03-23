@@ -25,8 +25,8 @@
     "express": "^4.19.2",
     "http-status": "^1.7.4",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.7.0",
-    "mongoose": "^8.4.3",
+    "mongodb": "^6.21.0",
+    "mongoose": "^9.3.1",
     "nodemailer": "^7.0.3",
     "sslcommerz-lts": "^1.1.0",
     "zod": "^3.23.8"
