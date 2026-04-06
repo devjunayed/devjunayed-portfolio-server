@@ -12,8 +12,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'https://www.devjunayed.xyz',
-      'https://devjunayed.xyz',
+      "https://devjunayed.vercel.app/"
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
